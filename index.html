@@ -1,10 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Investigador del FBI</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Estilos embebidos -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #121212;
+      color: #E1E1E1;
+      height: 100%;
+      overflow: auto;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #f8c10c;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .case-info, .pistas, .culpable {
+      margin: 2rem 0;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #f8c10c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #d9a000;
+    }
+
+    .result {
+      display: none;
+      margin-top: 3rem;
+    }
+
+    #result-text {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -13,7 +85,9 @@
     
     <div class="case-info">
       <h3>Detalles del Caso:</h3>
-      <p id="case-text">Hay un robo en la ciudad. La policía ha identificado a varios sospechosos, pero aún no hay evidencia suficiente. ¡Encuentra la pista clave!</p>
+      <p id="case-text">
+        Hay un robo en la ciudad. La policía ha identificado a varios sospechosos, pero aún no hay evidencia suficiente. ¡Encuentra la pista clave!
+      </p>
     </div>
 
     <div class="pistas">
@@ -35,6 +109,44 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Script embebido -->
+  <script>
+    const clues = {
+      1: "🔍 El sospechoso A tiene una coartada sólida, pero fue visto cerca de la escena del crimen.",
+      2: "🕵️‍♂️ El sospechoso B tiene antecedentes criminales y estaba en la ciudad el día del robo.",
+      3: "🧪 La escena del crimen tiene huellas dactilares que coinciden con el sospechoso C."
+    };
+
+    const correctAnswer = 'B'; // El culpable es el sospechoso B
+    let revealedClues = 0;
+
+    function revealClue(clueNumber) {
+      const caseText = document.getElementById('case-text');
+      caseText.textContent = clues[clueNumber];
+      revealedClues++;
+
+      if (revealedClues === 3) {
+        document.querySelector('.culpable').style.display = 'block';
+      }
+    }
+
+    function guess(suspect) {
+      const resultText = document.getElementById('result-text');
+      if (suspect === correctAnswer) {
+        resultText.textContent = "✅ ¡Correcto! El sospechoso " + suspect + " es el culpable.";
+      } else {
+        resultText.textContent = "❌ Incorrecto. El sospechoso " + suspect + " no es el culpable.";
+      }
+      document.querySelector('.result').style.display = 'block';
+    }
+
+    function restartGame() {
+      revealedClues = 0;
+      document.querySelector('.result').style.display = 'none';
+      document.querySelector('.culpable').style.display = 'none';
+      document.getElementById('case-text').textContent =
+        "Hay un robo en la ciudad. La policía ha identificado a varios sospechosos, pero aún no hay evidencia suficiente. ¡Encuentra la pista clave!";
+    }
+  </script>
 </body>
 </html>
