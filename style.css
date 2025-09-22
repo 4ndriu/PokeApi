@@ -9,7 +9,7 @@ body, html {
   background-color: #121212;
   color: #E1E1E1;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .container {
@@ -17,7 +17,8 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 2rem;
   text-align: center;
 }
 
@@ -66,4 +67,5 @@ button:disabled {
   background-color: #aaa;
   cursor: not-allowed;
 }
+
 
