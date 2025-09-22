@@ -8,23 +8,21 @@ let correctAnswer = 'B';  // El culpable es el sospechoso B
 let revealedClues = 0;
 
 function revealClue(clueNumber) {
-  if (clues[clueNumber]) {
-    const caseText = document.getElementById('case-text');
-    caseText.textContent = clues[clueNumber];
-    revealedClues++;
+  const caseText = document.getElementById('case-text');
+  caseText.textContent = clues[clueNumber];
+  revealedClues++;
 
-    if (revealedClues === 3) {
-      document.querySelector('.culpable').style.display = 'block';
-    }
+  if (revealedClues === 3) {
+    document.querySelector('.culpable').style.display = 'block';
   }
 }
 
 function guess(suspect) {
   const resultText = document.getElementById('result-text');
   if (suspect === correctAnswer) {
-    resultText.textContent = "¡Correcto! El sospechoso " + suspect + " es el culpable.";
+    resultText.textContent = "✅ ¡Correcto! El sospechoso " + suspect + " es el culpable.";
   } else {
-    resultText.textContent = "¡Incorrecto! El sospechoso " + suspect + " no es el culpable.";
+    resultText.textContent = "❌ Incorrecto. El sospechoso " + suspect + " no es el culpable.";
   }
   document.querySelector('.result').style.display = 'block';
 }
