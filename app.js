@@ -1,42 +1,45 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight * 0.6;
-}
-resize();
-window.addEventListener("resize", resize);
-
-// Crear estrellas
-const estrellas = [];
-for (let i = 0; i < 100; i++) {
-  estrellas.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2 + 1,
-    dx: (Math.random() - 0.5) * 0.5,
-    dy: (Math.random() - 0.5) * 0.5
-  });
-}
-
-function dibujar() {
-  ctx.fillStyle = "black";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = "white";
-  for (let e of estrellas) {
-    ctx.beginPath();
-    ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
-    ctx.fill();
-
-    e.x += e.dx;
-    e.y += e.dy;
-
-    if (e.x < 0 || e.x > canvas.width) e.dx *= -1;
-    if (e.y < 0 || e.y > canvas.height) e.dy *= -1;
+const maravillas = [
+  {
+    nombre: "Machu Picchu",
+    pais: "Perú",
+    dato: "Construida en el siglo XV, fue una ciudad inca en la cima de una montaña.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Machu_Picchu%2C_Peru.jpg"
+  },
+  {
+    nombre: "Taj Mahal",
+    pais: "India",
+    dato: "Mausoleo construido en el siglo XVII en honor a Mumtaz Mahal.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg"
+  },
+  {
+    nombre: "Chichen Itzá",
+    pais: "México",
+    dato: "Importante ciudad maya con la pirámide de Kukulkán como símbolo.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/9/92/Chichen_Itza_3.jpg"
+  },
+  {
+    nombre: "Coliseo Romano",
+    pais: "Italia",
+    dato: "Anfiteatro construido en el siglo I d.C., símbolo del Imperio Romano.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/d/de/Colosseo_2020.jpg"
   }
+];
 
-  requestAnimationFrame(dibujar);
-}
-dibujar();
+const contenedor = document.getElementById("contenedor");
+
+maravillas.forEach(m => {
+  const card = document.createElement("div");
+  card.className = "card";
+
+  card.innerHTML = `
+    <img src="${m.img}" alt="${m.nombre}">
+    <div class="card-content">
+      <h2>${m.nombre}</h2>
+      <p><strong>Ubicación:</strong> ${m.pais}</p>
+      <p>${m.dato}</p>
+    </div>
+  `;
+
+  contenedor.appendChild(card);
+});
+
