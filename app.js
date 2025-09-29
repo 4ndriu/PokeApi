@@ -1,75 +1,42 @@
-const canvas = document.getElementById("space");
+const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const info = document.getElementById("info");
 
 function resize() {
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  placePlanets();
-  drawPlanets();
+  canvas.height = window.innerHeight * 0.6;
 }
-window.addEventListener("resize", resize);
 resize();
+window.addEventListener("resize", resize);
 
-let planets = [];
-
-function placePlanets() {
-  planets = [
-    {
-      x: canvas.width * 0.3,
-      y: canvas.height * 0.4,
-      r: 20,
-      color: "red",
-      name: "Marte",
-      data: "Marte es conocido como el planeta rojo."
-    },
-    {
-      x: canvas.width * 0.6,
-      y: canvas.height * 0.6,
-      r: 25,
-      color: "orange",
-      name: "Venus",
-      data: "Venus es el planeta más caliente del sistema solar."
-    },
-    {
-      x: canvas.width * 0.8,
-      y: canvas.height * 0.3,
-      r: 35,
-      color: "brown",
-      name: "Júpiter",
-      data: "Júpiter es el planeta más grande del sistema solar."
-    }
-  ];
+// Crear estrellas
+const estrellas = [];
+for (let i = 0; i < 100; i++) {
+  estrellas.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2 + 1,
+    dx: (Math.random() - 0.5) * 0.5,
+    dy: (Math.random() - 0.5) * 0.5
+  });
 }
 
-function drawPlanets() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  planets.forEach(p => {
+function dibujar() {
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "white";
+  for (let e of estrellas) {
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = p.color;
+    ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
     ctx.fill();
-  });
-}
 
-canvas.addEventListener("click", e => {
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+    e.x += e.dx;
+    e.y += e.dy;
 
-  let found = null;
-  planets.forEach(p => {
-    const dx = x - p.x;
-    const dy = y - p.y;
-    if (Math.sqrt(dx * dx + dy * dy) < p.r) {
-      found = `${p.name}: ${p.data}`;
-    }
-  });
-
-  if (found) {
-    info.textContent = "🪐 " + found;
-  } else {
-    info.textContent = "🪐 Toca un planeta para ver información breve";
+    if (e.x < 0 || e.x > canvas.width) e.dx *= -1;
+    if (e.y < 0 || e.y > canvas.height) e.dy *= -1;
   }
-});
 
+  requestAnimationFrame(dibujar);
+}
+dibujar();
