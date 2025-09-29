@@ -8,13 +8,13 @@ const maravillas = [
   {
     nombre: "Taj Mahal",
     pais: "India",
-    dato: "Mausoleo construido en el siglo XVII en honor a Mumtaz Mahal.",
+    dato: "Mausoleo del siglo XVII, símbolo del amor eterno de Shah Jahan hacia Mumtaz Mahal.",
     img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg"
   },
   {
     nombre: "Chichen Itzá",
     pais: "México",
-    dato: "Importante ciudad maya con la pirámide de Kukulkán como símbolo.",
+    dato: "Centro ceremonial maya con la famosa pirámide de Kukulkán.",
     img: "https://upload.wikimedia.org/wikipedia/commons/9/92/Chichen_Itza_3.jpg"
   },
   {
@@ -42,4 +42,3 @@ maravillas.forEach(m => {
 
   contenedor.appendChild(card);
 });
-
