@@ -1,60 +1,73 @@
-body {
+/* Reset básico */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
-  background: #f8f9fa;
-  color: #333;
 }
 
+body {
+  background-color: #0d0d0d; /* Fondo oscuro */
+  color: #f2f2f2; /* Texto claro */
+  line-height: 1.6;
+}
+
+/* Encabezado */
 header {
-  text-align: center;
-  background: #2b6cb0;
-  color: white;
+  background: #1a1a1a;
   padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #333;
 }
 
-h1 {
-  margin: 0;
-  font-size: 1.8em;
+header h1 {
+  font-size: 1.8rem;
+  color: #ffcc00; /* Amarillo dorado */
 }
 
+.logo {
+  width: 50px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+/* Secciones */
 main {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
   padding: 20px;
 }
 
-.card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: scale(1.03);
-}
-
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.card-content {
+.maravilla {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 10px;
   padding: 15px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card-content h2 {
-  margin-top: 0;
-  font-size: 1.3em;
-  color: #2b6cb0;
+.maravilla:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
 }
 
+.maravilla h2 {
+  color: #ffcc00;
+  margin-bottom: 10px;
+}
+
+.maravilla img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Footer */
 footer {
+  background: #1a1a1a;
   text-align: center;
   padding: 15px;
-  font-size: 0.9em;
-  background: #e2e8f0;
+  font-size: 0.9rem;
+  border-top: 2px solid #333;
+  color: #aaa;
 }
+
