@@ -1,25 +1,75 @@
-html, body {
+body {
   margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background: black;
-  height: 100%;
-}
-
-#fireworks {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-}
-
-footer {
-  position: fixed;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
+  font-family: "Segoe UI", sans-serif;
+  background: radial-gradient(circle at center, #0b0f29, #000);
   color: white;
-  font-family: sans-serif;
-  font-size: 0.9rem;
-  opacity: 0.7;
+  text-align: center;
 }
 
+header {
+  padding: 20px;
+}
+
+.solar-system {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 20px auto;
+  border-radius: 50%;
+}
+
+.sun {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #ffdf00, #ff8800);
+  border-radius: 50%;
+  position: absolute;
+  top: 160px;
+  left: 160px;
+  box-shadow: 0 0 40px #ffae00;
+}
+
+.orbit {
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate linear infinite;
+}
+
+.planet {
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+/* Tamaños y colores */
+.mercury { width: 12px; height: 12px; background: gray; }
+.venus   { width: 16px; height: 16px; background: #e1ad21; }
+.earth   { width: 18px; height: 18px; background: #2e82ff; }
+.mars    { width: 14px; height: 14px; background: #c1440e; }
+
+/* Órbitas con tamaños y velocidades */
+#mercury.orbit { width: 120px; height: 120px; animation-duration: 6s; }
+#venus.orbit   { width: 180px; height: 180px; animation-duration: 10s; }
+#earth.orbit   { width: 240px; height: 240px; animation-duration: 14s; }
+#mars.orbit    { width: 300px; height: 300px; animation-duration: 18s; }
+
+@keyframes rotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 16px;
+  max-width: 300px;
+  margin: 20px auto;
+}
