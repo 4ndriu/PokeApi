@@ -1,4 +1,4 @@
-const canvas = document.getElementById("fireworks");
+const canvas = document.getElementById("galaxy");
 const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
@@ -8,71 +8,54 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-class Firework {
-  constructor(x, y) {
-    this.particles = [];
-    const colors = ["#ff0044","#ffaa00","#00ffcc","#44ff00","#0099ff","#cc00ff"];
-    this.color = colors[Math.floor(Math.random() * colors.length)];
-
-    for (let i = 0; i < 80; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 5 + 2;
-      this.particles.push({
-        x, y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        alpha: 1
-      });
-    }
+class Star {
+  constructor(x, y, size, speed) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.speed = speed;
+    this.alpha = Math.random();
   }
 
   update() {
-    this.particles.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.05; // gravedad
-      p.alpha -= 0.01;
-    });
-    this.particles = this.particles.filter(p => p.alpha > 0);
+    this.y += this.speed;
+    if (this.y > canvas.height) {
+      this.y = -this.size;
+      this.x = Math.random() * canvas.width;
+    }
   }
 
   draw() {
-    ctx.fillStyle = this.color;
-    this.particles.forEach(p => {
-      ctx.globalAlpha = p.alpha;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
-      ctx.fill();
-    });
-    ctx.globalAlpha = 1;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${this.alpha})`;
+    ctx.fill();
   }
 }
 
-let fireworks = [];
+let stars = [];
+for (let i = 0; i < 120; i++) {
+  stars.push(new Star(Math.random() * canvas.width,
+                      Math.random() * canvas.height,
+                      Math.random() * 2 + 1,
+                      Math.random() * 1 + 0.5));
+}
 
 function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.2)";
+  ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  fireworks.forEach((fw, i) => {
-    fw.update();
-    fw.draw();
-    if (fw.particles.length === 0) fireworks.splice(i, 1);
+  stars.forEach(star => {
+    star.update();
+    star.draw();
   });
 
   requestAnimationFrame(animate);
 }
 
 canvas.addEventListener("click", e => {
-  fireworks.push(new Firework(e.clientX, e.clientY));
+  // Crear estrella "especial" en la posición del toque
+  stars.push(new Star(e.clientX, e.clientY, 3, 1));
 });
 
-// lanzamientos automáticos cada 2s
-setInterval(() => {
-  const x = Math.random() * canvas.width;
-  const y = Math.random() * canvas.height * 0.5;
-  fireworks.push(new Firework(x, y));
-}, 2000);
-
 animate();
-
