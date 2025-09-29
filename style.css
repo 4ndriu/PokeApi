@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f0f0f0;
+  background: #f8f9fa;
   color: #333;
 }
 
@@ -14,12 +14,13 @@ header {
 
 h1 {
   margin: 0;
+  font-size: 1.8em;
 }
 
 main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  gap: 20px;
   padding: 20px;
 }
 
@@ -32,12 +33,12 @@ main {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .card img {
   width: 100%;
-  height: 150px;
+  height: 160px;
   object-fit: cover;
 }
 
@@ -47,7 +48,7 @@ main {
 
 .card-content h2 {
   margin-top: 0;
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: #2b6cb0;
 }
 
@@ -57,4 +58,3 @@ footer {
   font-size: 0.9em;
   background: #e2e8f0;
 }
-
