@@ -1,14 +1,35 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Galaxia Interactiva</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sistema Solar</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <canvas id="galaxy"></canvas>
-  <footer>🌌 Toca la pantalla para crear una nueva estrella 🌌</footer>
+  <header>
+    <h1>🌌 Mini Sistema Solar</h1>
+  </header>
+
+  <main>
+    <div class="solar-system">
+      <div id="sun" class="planet sun"></div>
+      <div id="mercury" class="orbit"><div class="planet mercury"></div></div>
+      <div id="venus" class="orbit"><div class="planet venus"></div></div>
+      <div id="earth" class="orbit"><div class="planet earth"></div></div>
+      <div id="mars" class="orbit"><div class="planet mars"></div></div>
+    </div>
+    
+    <div class="info-card" id="info-card">
+      <h2 id="planet-name">Selecciona un planeta</h2>
+      <p id="planet-desc">Haz clic en un planeta para ver información.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>Hecho con HTML + CSS + JS</p>
+  </footer>
+
   <script src="app.js"></script>
 </body>
 </html>
