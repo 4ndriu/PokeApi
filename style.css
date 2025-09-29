@@ -1,37 +1,26 @@
-/* Reset básico */
-* {
+body {
+  background-color: #0d0d0d;
+  color: #f2f2f2;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
 
-body {
-  background-color: #0d0d0d; /* Fondo oscuro */
-  color: #f2f2f2; /* Texto claro */
-  line-height: 1.6;
-}
-
-/* Encabezado */
 header {
   background: #1a1a1a;
-  padding: 20px;
   text-align: center;
+  padding: 15px;
   border-bottom: 2px solid #333;
 }
 
 header h1 {
-  font-size: 1.8rem;
-  color: #ffcc00; /* Amarillo dorado */
+  color: #ffcc00;
 }
 
 .logo {
   width: 50px;
-  vertical-align: middle;
-  margin-right: 10px;
 }
 
-/* Secciones */
 main {
   padding: 20px;
 }
@@ -39,35 +28,24 @@ main {
 .maravilla {
   background: #1a1a1a;
   border: 1px solid #333;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: 8px;
   margin-bottom: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.maravilla:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  cursor: pointer;
 }
 
 .maravilla h2 {
   color: #ffcc00;
-  margin-bottom: 10px;
 }
 
 .maravilla img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 6px;
   margin-bottom: 10px;
 }
 
-/* Footer */
-footer {
-  background: #1a1a1a;
-  text-align: center;
-  padding: 15px;
-  font-size: 0.9rem;
-  border-top: 2px solid #333;
-  color: #aaa;
+.descripcion {
+  display: none;
+  color: #ccc;
+  font-size: 0.95rem;
 }
-
