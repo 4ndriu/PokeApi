@@ -34,7 +34,7 @@
 </head>
 <body>
   <canvas id="garden"></canvas>
-  <footer>🌱 Toca la pantalla y haz crecer tu jardín 🌱</footer>
+  <footer>🌱 Jardín Digital 🌱</footer>
   <script>
     const canvas = document.getElementById("garden");
     const ctx = canvas.getContext("2d");
@@ -53,7 +53,7 @@
         this.size = 2;
         this.maxSize = Math.random() * 20 + 15;
         this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
-        this.growth = 0.3;
+        this.growth = 0.2;
       }
 
       update() {
@@ -66,7 +66,6 @@
         ctx.save();
         ctx.translate(this.x, this.y);
 
-        // pétalos
         for (let i = 0; i < 6; i++) {
           ctx.rotate(Math.PI / 3);
           ctx.beginPath();
@@ -75,7 +74,6 @@
           ctx.fill();
         }
 
-        // centro
         ctx.beginPath();
         ctx.arc(0, 0, this.size / 3, 0, Math.PI * 2);
         ctx.fillStyle = "yellow";
@@ -86,6 +84,13 @@
     }
 
     let flowers = [];
+
+    // 🌼 generar flores aleatorias automáticamente
+    setInterval(() => {
+      let x = Math.random() * canvas.width;
+      let y = Math.random() * canvas.height;
+      flowers.push(new Flower(x, y));
+    }, 1000);
 
     function animate() {
       ctx.fillStyle = "rgba(0, 20, 0, 0.3)";
@@ -99,16 +104,7 @@
       requestAnimationFrame(animate);
     }
 
-    canvas.addEventListener("click", e => {
-      flowers.push(new Flower(e.clientX, e.clientY));
-    });
-
     animate();
   </script>
 </body>
 </html>
-
-
-
-
-
