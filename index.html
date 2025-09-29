@@ -3,88 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mini Mapa Estelar</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      background: radial-gradient(circle at center, #000010, #000);
-    }
-    canvas {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    #info {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      color: #fff;
-      font-family: sans-serif;
-      font-size: 1rem;
-      background: rgba(0,0,0,0.5);
-      padding: 5px;
-    }
-  </style>
+  <title>Mini Sistema Planetario</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="sky"></canvas>
-  <div id="info">✨ Toca una estrella para ver su nombre ✨</div>
-
-  <script>
-    const canvas = document.getElementById("sky");
-    const ctx = canvas.getContext("2d");
-    const info = document.getElementById("info");
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener("resize", resize);
-
-    const stars = [
-      { x: 200, y: 150, name: "Sirius" },
-      { x: 400, y: 300, name: "Betelgeuse" },
-      { x: 600, y: 200, name: "Rigel" }
-    ];
-
-    function drawStars() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      ctx.fillStyle = "white";
-      stars.forEach(star => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, 5, 0, Math.PI*2);
-        ctx.fill();
-      });
-    }
-
-    drawStars();
-
-    canvas.addEventListener("click", e => {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      let found = null;
-      stars.forEach(star => {
-        const dx = x - star.x;
-        const dy = y - star.y;
-        if (Math.sqrt(dx*dx + dy*dy) < 10) {
-          found = star.name;
-        }
-      });
-      
-      if (found) {
-        info.textContent = "⭐ " + found;
-      } else {
-        info.textContent = "✨ Toca una estrella para ver su nombre ✨";
-      }
-    });
-  </script>
+  <canvas id="space"></canvas>
+  <div id="info">🪐 Toca un planeta para ver información breve</div>
+  <script src="app.js"></script>
 </body>
 </html>
+
 
